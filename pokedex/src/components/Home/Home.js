@@ -5,7 +5,9 @@ import pokelogo from "../img/pokelogo.png"
 import {
     Header,
     ImgHeader,
-    ButtonHeader
+    ButtonHeader,
+    ButtonHeaderContainer,
+    TextHeaderContainer
 } from "./styled"
 
 export const Home = () => {
@@ -14,8 +16,15 @@ export const Home = () => {
     return (
         <div>
             <Header>
+                <TextHeaderContainer>
+                 oi pokemigos
+                </TextHeaderContainer>
+               
                 <ImgHeader src={pokelogo} />
+             
+                <ButtonHeaderContainer>
                 <ButtonHeader onClick={() => goTo(navigate, "/pokedex")}>Pokédex</ButtonHeader>
+                </ButtonHeaderContainer>
             </Header>
             <p>Home</p>
             <button onClick={() => goTo(navigate, "/details")}>Ir para detalhes</button>
