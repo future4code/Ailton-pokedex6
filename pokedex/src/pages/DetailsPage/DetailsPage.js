@@ -1,6 +1,8 @@
 import React from 'react'
-import { goTo } from '../routes/coordinator'
 import { useNavigate } from "react-router-dom"
+
+import { goTo } from '../../routes/coordinator'
+
 
 export const DetailsPage = () => {
     const navigate = useNavigate()
