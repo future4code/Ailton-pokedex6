@@ -1,7 +1,7 @@
 import React from 'react'
-import { goTo } from '../routes/coordinator'
 import { useNavigate } from "react-router-dom"
-import pokelogo from "../img/pokelogo.png"
+import { goTo } from '../../routes/coordinator'
+import pokelogo from "../../assets/img/pokelogo.png"
 import { Header } from "./styled"
 
 export const Pokedex = () => {
