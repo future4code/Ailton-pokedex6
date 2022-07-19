@@ -8,3 +8,10 @@ export const Header = styled.header`
     justify-content: space-around;
     align-items: center;
 `
+export const ImgHeader = styled.img`
+    display: flex;
+    margin-top: 21px;
+    margin-bottom: 26px;
+    width: 307px;
+    height: 113px;
+`

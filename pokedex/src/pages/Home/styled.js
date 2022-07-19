@@ -43,3 +43,18 @@ export const ButtonHeader = styled.button`
     cursor: pointer;
     border: none;
 `
+export const MainContainer = styled.main `
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #DDDDDD;
+`;
+
+export const CardPokemon = styled.div `
+    width: 440px;
+    height: 210px;
+    border: 1px solid lightgray;
+    margin: 16px auto;
+    background-color: #fff;
+    border-radius: 12px;
+    
+`;
