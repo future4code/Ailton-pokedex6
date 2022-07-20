@@ -36,6 +36,7 @@ export const Home = () => {
     const resolvedPokemons = await Promise.all(pokemonsAll)
 
     setPokemons(resolvedPokemons)
+    console.log(resolvedPokemons)
   }
   
 
@@ -59,6 +60,10 @@ export const Home = () => {
             return <CardPokemon key={pokemon.id}>
             <p>{`#${pokemon.id}`}</p>
             <h3>{pokemon.name}</h3>
+            <img src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name}/>
+            {pokemon.types.map((type) => {
+              return <p>{type.type.name}</p>
+            })}
             <div>
               <button>Capturar!</button>
               <p>Detalhes</p>
