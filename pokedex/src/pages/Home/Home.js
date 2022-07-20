@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRequestData } from "../../hooks/useRequestData";
 import { BASE_URL } from "../../constants/urls"
@@ -20,14 +20,31 @@ import {
 export const Home = () => {
   const navigate = useNavigate();
 
-  const data = useRequestData(BASE_URL)
+  const [pokemons, setPokemons] = useState([])
 
+  console.log("todos os pokemons",pokemons)
+  
+  const data = useRequestData(`${BASE_URL}`)
 
-  const detalhes = (index) => {
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${index}/`)
-    .then((res) => {console.log(res.data)})
-    .catch((err) => {console.log(err)})
+  useEffect(() => {
+    getDetails()
+  }, [])
+
+  const getDetails = async () => {
+    const dados = []
+
+    try {
+      for(let i = 1; i < data.length; i++) {
+
+        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}/`)
+        dados.push(res.data)
+      }
+    }catch(err) {
+      console.log(err)
+    }
+    setPokemons(dados)
   }
+  
 
   return (
     <div>
@@ -44,17 +61,17 @@ export const Home = () => {
       </Header>
 
         <h1>Todos os Pokémons</h1>
-      <MainContainer>
-        {data?.map((pokemon, index) => {
-          return <CardPokemon key={pokemon.name}>
-            {`#0${index + 1}`}
+        <MainContainer>
+          {pokemons?.map((pokemon) => {
+            return <CardPokemon key={pokemon.id}>
+            <p>{`#${pokemon.id}`}</p>
             <h3>{pokemon.name}</h3>
             <div>
               <button>Capturar!</button>
-              <p onClick={() => detalhes(index + 1)}>Detalhes</p>
+              <p>Detalhes</p>
             </div>
             </CardPokemon>
-        })}
+          })}
       </MainContainer>
 
       <button onClick={() => goTo(navigate, "/details")}>
