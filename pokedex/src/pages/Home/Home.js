@@ -22,27 +22,20 @@ export const Home = () => {
 
   const [pokemons, setPokemons] = useState([])
 
-  console.log("todos os pokemons",pokemons)
-  
-  const data = useRequestData(`${BASE_URL}`)
-
   useEffect(() => {
-    getDetails()
+    getPokemons()
   }, [])
 
-  const getDetails = async () => {
-    const dados = []
 
-    try {
-      for(let i = 1; i < data.length; i++) {
+  const getPokemons = async () => {
+    const arrayNumber = Array.from({ length: 20 }, (_, index) => ++index)
+    const pokemonsAll = arrayNumber.map( async (numberpok) => {
+      const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${numberpok}/`)
+      return res.data
+    })
+    const resolvedPokemons = await Promise.all(pokemonsAll)
 
-        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}/`)
-        dados.push(res.data)
-      }
-    }catch(err) {
-      console.log(err)
-    }
-    setPokemons(dados)
+    setPokemons(resolvedPokemons)
   }
   
 
