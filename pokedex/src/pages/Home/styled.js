@@ -56,5 +56,9 @@ export const CardPokemon = styled.div `
     margin: 16px auto;
     background-color: #fff;
     border-radius: 12px;
-    
+    display: flex;
+
+    > img {
+        width: 100px;
+    }
 `;
