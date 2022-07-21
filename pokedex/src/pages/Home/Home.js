@@ -30,7 +30,7 @@ export const Home = () => {
   const getPokemons = async () => {
     const arrayNumber = Array.from({ length: 20 }, (_, index) => ++index)
     const pokemonsAll = arrayNumber.map( async (numberpok) => {
-      const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${numberpok}/`)
+      const res = await axios.get(`${BASE_URL}/${numberpok}/`)
       return res.data
     })
     const resolvedPokemons = await Promise.all(pokemonsAll)
