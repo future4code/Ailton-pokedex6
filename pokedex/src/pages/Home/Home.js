@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRequestData } from "../../hooks/useRequestData";
 import { BASE_URL } from "../../constants/urls"
 import axios from "axios"
+import { GlobalContext } from "../../global/GlobalContext";
 
 import { goTo } from "../../routes/coordinator";
 import pokelogo from "../../assets/img/pokelogo.png";
@@ -20,25 +20,8 @@ import {
 export const Home = () => {
   const navigate = useNavigate();
 
-  const [pokemons, setPokemons] = useState([])
+  const { pokemons } = useContext(GlobalContext)
 
-  useEffect(() => {
-    getPokemons()
-  }, [])
-
-
-  const getPokemons = async () => {
-    const arrayNumber = Array.from({ length: 20 }, (_, index) => ++index)
-    const pokemonsAll = arrayNumber.map( async (numberpok) => {
-      const res = await axios.get(`${BASE_URL}/${numberpok}/`)
-      return res.data
-    })
-    const resolvedPokemons = await Promise.all(pokemonsAll)
-
-    setPokemons(resolvedPokemons)
-    console.log(resolvedPokemons)
-  }
-  
 
   return (
     <div>
