@@ -14,7 +14,11 @@ import {
   ButtonHeaderContainer,
   TextHeaderContainer,
   MainContainer,
-  CardPokemon
+  CardPokemon,
+  PokemonImg,
+  PokemonTypes,
+  NameAndType,
+  ImageAndCapture
 } from "./styled";
 
 export const Home = () => {
@@ -29,7 +33,7 @@ export const Home = () => {
 
   const getPokemons = async () => {
     const arrayNumber = Array.from({ length: 20 }, (_, index) => ++index)
-    const pokemonsAll = arrayNumber.map( async (numberpok) => {
+    const pokemonsAll = arrayNumber.map(async (numberpok) => {
       const res = await axios.get(`${BASE_URL}/${numberpok}/`)
       return res.data
     })
@@ -38,7 +42,7 @@ export const Home = () => {
     setPokemons(resolvedPokemons)
     console.log(resolvedPokemons)
   }
-  
+
 
   return (
     <div>
@@ -54,22 +58,32 @@ export const Home = () => {
         </ButtonHeaderContainer>
       </Header>
 
-        <h1>Todos os Pokémons</h1>
-        <MainContainer>
-          {pokemons?.map((pokemon) => {
-            return <CardPokemon key={pokemon.id}>
-            <p>{`#${pokemon.id}`}</p>
-            <h3>{pokemon.name}</h3>
-            <img src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name}/>
-            {pokemon.types.map((type) => {
-              return <p>{type.type.name}</p>
-            })}
-            <div>
-              <button>Capturar!</button>
+      <h1>Todos os Pokémons</h1>
+      <MainContainer>
+        {pokemons?.map((pokemon) => {
+          return <CardPokemon key={pokemon.id}>
+            <NameAndType>
+              <div>
+              <p>{`#${pokemon.id}`}</p>
+              <h3>{pokemon.name}</h3>
+              </div>
+              <PokemonTypes>
+                {pokemon.types.map((type) => {
+                  return <p key={type.type.name}>{type.type.name}</p>
+                })}
+              </PokemonTypes>
               <p>Detalhes</p>
-            </div>
-            </CardPokemon>
-          })}
+            </NameAndType>
+            <ImageAndCapture>
+              <PokemonImg>
+                <img src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} />
+              </PokemonImg>
+              <div>
+                <button>Capturar!</button>
+              </div>
+            </ImageAndCapture>
+          </CardPokemon>
+        })}
       </MainContainer>
 
       <button onClick={() => goTo(navigate, "/details")}>
