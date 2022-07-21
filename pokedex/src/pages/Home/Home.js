@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../constants/urls"
 import axios from "axios"
@@ -54,7 +54,9 @@ export const Home = () => {
                   return <p key={type.type.name}>{type.type.name}</p>
                 })}
               </PokemonTypes>
-              <p>Detalhes</p>
+              <button onClick={() => goTo(navigate, `/details/${pokemon.id}`)}>
+                Detalhes 
+              </button>
             </NameAndType>
             <ImageAndCapture>
               <PokemonImg>
@@ -67,10 +69,6 @@ export const Home = () => {
           </CardPokemon>
         })}
       </MainContainer>
-
-      <button onClick={() => goTo(navigate, "/details")}>
-        Ir para detalhes
-      </button>
     </div>
   );
 };
