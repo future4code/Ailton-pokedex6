@@ -57,8 +57,28 @@ export const CardPokemon = styled.div `
     background-color: #fff;
     border-radius: 12px;
     display: flex;
-
-    > img {
-        width: 100px;
-    }
+    justify-content: space-around;
 `;
+
+export const PokemonImg = styled.div`
+> img {
+    width: 125px;
+}
+`
+
+export const PokemonTypes = styled.div`
+display: flex;
+gap: 8px;
+`
+
+export const NameAndType= styled.div`
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+`
+
+export const ImageAndCapture = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+`
