@@ -1,7 +1,5 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../../constants/urls"
-import axios from "axios"
 import { GlobalContext } from "../../global/GlobalContext";
 
 import { goTo } from "../../routes/coordinator";
@@ -24,7 +22,23 @@ import {
 export const Home = () => {
   const navigate = useNavigate();
 
-  const { pokemons } = useContext(GlobalContext)
+  const { pokemons, setPokedex } = useContext(GlobalContext)
+  const pokemonsSelected = []
+
+  const addPokemons = (id) => {
+    const pokemonsPokedex = [...pokemons]
+    const pokemonAdd = pokemonsPokedex.filter((itens) => {
+      return  itens.id === id
+    })
+    pokemonsSelected.push(pokemonAdd[0])
+    setPokedex(pokemonsSelected)
+
+    
+    /* const index = pokemons.findIndex((i) => i.id === id.id);
+    console.log(index)
+    if(id === -1){
+    } */
+  }
 
   return (
     <div>
@@ -61,7 +75,7 @@ export const Home = () => {
                 <img src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} />
               </PokemonImg>
               <div>
-                <button>Capturar!</button>
+                <button onClick={() => addPokemons(pokemon.id)}>Capturar!</button>
               </div>
             </ImageAndCapture>
           </CardPokemon>

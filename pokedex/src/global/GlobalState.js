@@ -7,9 +7,12 @@ export default function GlobalState(props) {
     const Provider = GlobalContext.Provider
     
     const [pokemons, setPokemons] = useState([])
+    const [pokedex, setPokedex] = useState([])
+    console.log(pokedex)
 
     const values = {
-        pokemons
+        pokemons,
+        setPokedex
     }
 
     useEffect(() => {
