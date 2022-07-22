@@ -22,22 +22,20 @@ import {
 export const Home = () => {
   const navigate = useNavigate();
 
-  const { pokemons, setPokedex } = useContext(GlobalContext)
-  const pokemonsSelected = []
+  const { pokemons, pokedex, setPokedex } = useContext(GlobalContext)
+
 
   const addPokemons = (id) => {
-    const pokemonsPokedex = [...pokemons]
-    const pokemonAdd = pokemonsPokedex.filter((itens) => {
-      return  itens.id === id
-    })
-    pokemonsSelected.push(pokemonAdd[0])
-    setPokedex(pokemonsSelected)
+    const index = pokedex.some((pokemon) => pokemon.id === id);
 
-    
-    /* const index = pokemons.findIndex((i) => i.id === id.id);
-    console.log(index)
-    if(id === -1){
-    } */
+    if(!index) {
+      const pokemonAdd = pokemons.filter((itens) => {
+        return  itens.id === id
+      })
+      setPokedex([...pokedex, ...pokemonAdd])
+    }else {
+      alert("O pokemon ja esta na pokedex")
+    }
   }
 
   return (
@@ -56,7 +54,8 @@ export const Home = () => {
 
       <h1>Todos os Pokémons</h1>
       <MainContainer>
-        {pokemons?.map((pokemon) => {
+        {pokemons?.map((pokemon, index) => {
+          console.log(pokemon)
           return <CardPokemon key={pokemon.id}>
             <NameAndType>
               <div>
@@ -74,7 +73,7 @@ export const Home = () => {
             </NameAndType>
             <ImageAndCapture>
               <PokemonImg>
-                <img src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} />
+                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png`} alt={pokemon.name} />
               </PokemonImg>
               <div>
                 <button onClick={() => addPokemons(pokemon.id)}>Capturar!</button>

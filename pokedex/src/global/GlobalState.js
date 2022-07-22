@@ -8,11 +8,12 @@ export default function GlobalState(props) {
     
     const [pokemons, setPokemons] = useState([])
     const [pokedex, setPokedex] = useState([])
-    console.log(pokedex)
+    
 
     const values = {
         pokemons,
-        setPokedex
+        setPokedex,
+        pokedex
     }
 
     useEffect(() => {
