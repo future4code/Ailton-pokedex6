@@ -15,7 +15,6 @@ export const DetailsPage = () => {
     const navigate = useNavigate()
     const pathParams = useParams()
     const { pokemons } = useContext(GlobalContext)
-    console.log(pathParams)
  
      useEffect(() => {
              axios
@@ -30,7 +29,6 @@ export const DetailsPage = () => {
 
     return (
         <div>
-            {console.log(pokemonDetails)}
             {pokemonDetails?.stats.map((pokemon) => {
                return <div key={pokemon.id}>
                     <Stats>

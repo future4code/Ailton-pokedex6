@@ -1,84 +1,147 @@
 import styled from "styled-components";
 
+const backgroundColors = {
+  grass: "#729F92",
+  fire: "#EAAB7D",
+  water: "#71C3FF;",
+  bug: "#76A866",
+  normal: "#BF9762",
+  poison: "#000",
+};
+
+const typesColors = {
+  poison: "#AD61AE",
+  grass: "#70B873",
+  fire: "#F44900",
+  water: "#33A4F5",
+  flying: "#6892B0",
+  bug: "#2F601E",
+  normal: "#848484",
+};
+
 export const Header = styled.header`
-    display: flex;
-    height: 160px;
-    border: 1px solid black;
-    width: 100%;
-    justify-content: space-around;
-    align-items: center;
-`
+  display: flex;
+  height: 160px;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+`;
 export const TextHeaderContainer = styled.div`
-    width: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-`
-
-export const ImgHeader = styled.img`
-    display: flex;
-    margin-top: 21px;
-    margin-bottom: 26px;
-    width: 307px;
-    height: 113px;
-`
-
-export const ButtonHeaderContainer = styled.div`
-    width: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`
-
-export const ButtonHeader = styled.button`
-    background-color: #33A4F5;
-    color: white;
-    width: 287px;
-    height: 74px;
-    margin-top: 41px;
-    margin-bottom: 45px;
-    border-radius: 8px;
-    padding: 4px 10px 2px 10px;
-    cursor: pointer;
-    border: none;
-`
-export const MainContainer = styled.main `
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #DDDDDD;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 `;
 
-export const CardPokemon = styled.div `
-    width: 440px;
-    height: 210px;
-    border: 1px solid lightgray;
-    margin: 16px auto;
-    background-color: #fff;
-    border-radius: 12px;
-    display: flex;
-    justify-content: space-around;
+export const ImgHeader = styled.img`
+  display: flex;
+  margin-top: 21px;
+  margin-bottom: 26px;
+  width: 307px;
+  height: 113px;
+`;
+
+export const ButtonHeaderContainer = styled.div`
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ButtonHeader = styled.button`
+  background-color: #33a4f5;
+  color: white;
+  font-weight: bold;
+  width: 287px;
+  height: 74px;
+  margin-top: 41px;
+  margin-bottom: 45px;
+  border-radius: 8px;
+  padding: 4px 10px 2px 10px;
+  cursor: pointer;
+  border: none;
+`;
+export const Container = styled.div`
+  background-color: #5d5d5d;
+  h1 {
+    color: #fff;
+    margin-left: 40px;
+    padding: 16px;
+  }
+`;
+export const MainContainer = styled.main`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const CardPokemon = styled.div`
+  width: 440px;
+  height: 210px;
+  margin: 16px auto;
+  background-color: ${(props) => backgroundColors[props.type]};
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-around;
+  color: #fff;
 `;
 
 export const PokemonImg = styled.div`
-> img {
-    width: 125px;
-}
-`
+    position: relative;
+    #backpoke {
+        width: 230px;
+        position: absolute;
+        bottom: -90px;
+        left: -15px;        
+    }
+    img {
+    width: 170px;
+    position: absolute;
+    bottom: -40px;
+    left: 30px;
+  }
+`;
 
 export const PokemonTypes = styled.div`
-display: flex;
-gap: 8px;
-`
+  display: flex;
+  gap: 8px;
+`;
+export const Ptypes = styled.p`
+  background-color: ${(props) => typesColors[props.type]};
+  border-radius: 8px;
+  padding: 5px;
+  font-size: 12px;
+  border: 0.2px dashed #fff;
+`;
 
-export const NameAndType= styled.div`
-display: flex;
-flex-direction: column;
-justify-content: space-around;
-`
+export const NameAndType = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+`;
+export const ButtonDetalhes = styled.p `
+    font-weight: bold;
+    :hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+`;
+
+export const ButtonCapturar = styled.button `
+    width: 140px;
+    height: 38px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    margin-left: 6px;
+    position: relative;
+    bottom: -155px;
+    right: 20px;
+    cursor: pointer;
+`;
 
 export const ImageAndCapture = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: space-around;
-`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+`;
