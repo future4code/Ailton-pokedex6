@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../global/GlobalContext";
 
 import { goTo } from "../../routes/coordinator";
 import pokelogo from "../../assets/img/pokelogo.png";
+import pokebola from "../../assets/img/pokebola.png"
 
 import {
   Header,
@@ -11,32 +12,36 @@ import {
   ButtonHeader,
   ButtonHeaderContainer,
   TextHeaderContainer,
+  Container,
   MainContainer,
   CardPokemon,
   PokemonImg,
   PokemonTypes,
+  Ptypes,
   NameAndType,
-  ImageAndCapture
+  ButtonDetalhes,
+  ButtonCapturar,
+  ImageAndCapture,
 } from "./styled";
 
 export const Home = () => {
   const navigate = useNavigate();
 
-  const { pokemons, pokedex, setPokedex } = useContext(GlobalContext)
-
+  const { pokemons, pokedex, setPokedex } = useContext(GlobalContext);
 
   const addPokemons = (id) => {
     const index = pokedex.some((pokemon) => pokemon.id === id);
 
-    if(!index) {
+    if (!index) {
       const pokemonAdd = pokemons.filter((itens) => {
-        return  itens.id === id
-      })
-      setPokedex([...pokedex, ...pokemonAdd])
-    }else {
-      alert("O pokemon ja esta na pokedex")
+        return itens.id === id;
+      });
+      setPokedex([...pokedex, ...pokemonAdd]);
+      alert(`Pokemon adicionado a sua Pokedex`)
+    } else {
+      alert("O pokemon ja esta na pokedex");
     }
-  }
+  };
 
   return (
     <div>
@@ -51,37 +56,48 @@ export const Home = () => {
           </ButtonHeader>
         </ButtonHeaderContainer>
       </Header>
-
+      <Container>
       <h1>Todos os Pokémons</h1>
       <MainContainer>
         {pokemons?.map((pokemon, index) => {
-          console.log(pokemon)
-          return <CardPokemon key={pokemon.id}>
-            <NameAndType>
-              <div>
-              <p>{`#${pokemon.id}`}</p>
-              <h3>{pokemon.name}</h3>
-              </div>
-              <PokemonTypes>
-                {pokemon.types.map((type) => {
-                  return <p key={type.type.name}>{type.type.name}</p>
-                })}
-              </PokemonTypes>
-              <button onClick={() => goTo(navigate, `/details/${pokemon.id}`)}>
-                Detalhes 
-              </button>
-            </NameAndType>
-            <ImageAndCapture>
-              <PokemonImg>
-                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png`} alt={pokemon.name} />
-              </PokemonImg>
-              <div>
-                <button onClick={() => addPokemons(pokemon.id)}>Capturar!</button>
-              </div>
-            </ImageAndCapture>
-          </CardPokemon>
+          // console.log(pokemon)
+          return (
+            <CardPokemon type={pokemon?.types[0]?.type?.name} key={pokemon.id}>
+              <NameAndType>
+                <div>
+                  <p>{`#${pokemon.id}`}</p>
+                  <h3>{pokemon.name.toUpperCase()}</h3>
+                </div>
+                <PokemonTypes>
+                  {pokemon.types.map((type) => {
+                    return <Ptypes type={type.type.name} key={type.type.name}>{type.type.name}</Ptypes>;
+                  })}
+                </PokemonTypes>
+                <ButtonDetalhes
+                  onClick={() => goTo(navigate, `/details/${pokemon.id}`)}
+                >
+                  Detalhes
+                </ButtonDetalhes>
+              </NameAndType>
+              <ImageAndCapture>
+                <PokemonImg>
+                  <img id="backpoke" src={pokebola} alt="background pokemon" />
+                  <img 
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+                      index + 1
+                    }.png`}
+                    alt={pokemon.name}
+                  />
+                </PokemonImg>
+              </ImageAndCapture>
+                <ButtonCapturar onClick={() => addPokemons(pokemon.id)}>
+                  Capturar!
+                </ButtonCapturar>                
+            </CardPokemon>
+          );
         })}
       </MainContainer>
+      </Container>
     </div>
   );
 };
