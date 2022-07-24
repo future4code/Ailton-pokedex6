@@ -1,11 +1,11 @@
 # POKEDEX
 
 Nome dos integrantes: 
-- Pessoa 1
+- Joclelson Rodrigues
 - Pessoa 2
 - Pessoa 3
 
-Link do Surge: www.link.com.br
+Link do Surge: https://jumbled-swing.surge.sh/
 
 O que funciona:
 - Item 1
