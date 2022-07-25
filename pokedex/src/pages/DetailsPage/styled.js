@@ -56,6 +56,7 @@ export const Container = styled.div`
 
 export const DetailsPokemon = styled.div`
   display: flex;
+  flex-wrap: wrap-reverse;
   width: 90%;
   height: 600px;
   margin: 20px auto;
@@ -87,9 +88,8 @@ export const StatsDetails = styled.div`
   height: 550px;
   background-color: #fff;
   color: #000;
-  z-index: 1;
   border-radius: 8px;
-  margin: 25px 0 5px 30px;
+  margin: 0px 0 25px 30px;
   h3 {
     text-align: center;
     margin: 12px;
