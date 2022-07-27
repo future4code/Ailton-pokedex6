@@ -2,7 +2,7 @@
 
 Nome dos integrantes: 
 - Joclelson Rodrigues
-- Pessoa 2
+- Daniel Andrade
 - Pessoa 3
 
 Link do Surge: https://jumbled-swing.surge.sh/
